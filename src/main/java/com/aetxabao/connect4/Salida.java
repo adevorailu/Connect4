@@ -3,7 +3,7 @@ package com.aetxabao.connect4;
 import static com.aetxabao.connect4.Tablero.*;
 
 /**
- * @author Nombre Apellido
+ * @author Artius Devora
  */
 public class Salida {
 
@@ -33,7 +33,6 @@ public class Salida {
     }
 
     public static void pinta(char[][] matriz) {
-        //TODO: pinta
         limpiaPantalla();//no borrar esta primera línea
         int h = matriz[0].length;
         int w = matriz.length;
@@ -42,14 +41,14 @@ public class Salida {
         System.out.println("###################################");
         System.out.println("                                   ");
         char[] letras = {'A','B','C','D','E','F'};
-
-
-
-
-
-
-
-
+        for (int i = h; i > 0; i--) {
+            System.out.print(letras[i-1] + "  |");
+            for (int j = 0; j < w; j++) {
+                System.out.print(" " + matriz[j][i-1]  + " |");
+            }
+            System.out.print("  " + letras[i-1]);
+            System.out.println();
+        }
         System.out.println("   -----------------------------   ");
         System.out.println("   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   ");
         System.out.println("                                   ");

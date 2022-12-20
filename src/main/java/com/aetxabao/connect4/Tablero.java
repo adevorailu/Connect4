@@ -1,5 +1,7 @@
 package com.aetxabao.connect4;
 
+import java.util.Random;
+
 /**
  * @author Nombre Apellido
  */
@@ -30,12 +32,26 @@ public class Tablero {
     }
 
     public Tablero(char[][] m) {
-        //TODO: Tablero(m)
-        contador = 0;
         turno = X;
-        ancho = 0;
-        alto = 0;
         this.m = m;
+        int cntRojo = 0;
+        int cntAmarillo = 0;
+        ancho = m.length;
+        alto = m[0].length;
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j] == 'O'){
+                    cntRojo++;
+                }
+                else if (m[i][j] == 'X'){
+                    cntAmarillo++;
+                }
+            }
+        }
+        contador = cntAmarillo + cntRojo;
+        if (cntRojo > cntAmarillo){
+            turno = X;
+        }else turno = O;
     }
 
     public int getAncho() {
@@ -59,24 +75,48 @@ public class Tablero {
     }
 
     public void iniciaTurno() {
-        //TODO: iniciaTurno
+        int num = (int)(Math.random() * 2);
+        if (num == 0){
+            turno = 'X';
+        }else if (num == 1){
+            turno = 'O';
+        }
     }
 
     public void cambiaTurno() {
-        //TODO: cambiaTurno
+        if (turno == 'X'){
+            turno = 'O';
+        }else if (turno == 'O'){
+            turno = 'X';
+        }
     }
 
     public boolean estaColumnaLibre(int columna) {
-        //TODO: estaColumnaLibre
-        return false;
+        boolean flag = false;
+        if (columna < 0 || columna > m[0].length){
+            flag = false;
+        }
+        for (int i = 0; i < m[columna].length; i++) {
+            if (m[columna][i] == ' '){
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     public void inserta(char ficha, int columna) {
-        //TODO: insertar
+        if (estaColumnaLibre(columna)){
+            for (int i = 0; i < m[columna].length; i++) {
+                if (m[columna][i] == ' '){
+                    m[columna][i] = ficha;
+                    contador++;
+                    break;
+                }
+            }
+        }
     }
 
     public boolean estaLleno() {
-        //TODO: estaLleno
         return contador == alto*ancho;
     }
 
@@ -90,8 +130,8 @@ public class Tablero {
     }
 
     private boolean ganaHorizontal(char jugador) {
-        //TODO: ganaHorizontal
         boolean b = false;
+
         return b;
     }
 
