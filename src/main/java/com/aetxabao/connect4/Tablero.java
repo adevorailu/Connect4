@@ -130,52 +130,110 @@ public class Tablero {
     }
 
     private boolean ganaHorizontal(char jugador) {
-        boolean b = false;
-
-        return b;
+        boolean flag = false;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (hay4Horizontales(i, j, jugador)){
+                    flag = true;
+                }
+            }
+        }
+        return flag;
     }
 
-    private boolean hay4Horizontales(int columna, int fila, char jugador){
-        //TODO: hay4Horizontales
-        return true;
+    private boolean hay4Horizontales(int columna, int fila, char jugador) {
+        boolean flag = false;
+        if (m[columna][fila] == jugador){
+            if (m[columna+1][fila] == jugador){
+                if (m[columna+2][fila] == jugador){
+                    if (m[columna+3][fila] == jugador){
+                        flag = true;
+                    }
+                }
+            }
+        }
+        return flag;
     }
+        private boolean ganaVertical(char jugador) {
+            boolean flag = false;
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (hay4Verticales(i, j, jugador)){
+                        flag = true;
+                    }
+                }
+            }
+            return flag;
+        }
 
-    private boolean ganaVertical(char jugador) {
-        //TODO: ganaVertical
-        boolean b = false;
-        return b;
+        private boolean hay4Verticales(int columna, int fila, char jugador){
+            boolean flag = false;
+            if (m[columna][fila] == jugador){
+                if (m[columna][fila+1] == jugador){
+                    if(m[columna][fila+2] == jugador){
+                        if (m[columna][fila+3] == jugador){
+                            flag = true;
+                        }
+                    }
+                }
+            }
+            return flag;
+        }
+
+        private boolean ganaDiagonalArriba(char jugador) {
+            boolean flag = false;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (hay4DiagonalesArriba(i, j, jugador)){
+                        flag = true;
+                    }
+                }
+            }
+            return flag;
+        }
+
+        private boolean hay4DiagonalesArriba(int columna, int fila, char jugador){
+            boolean flag = false;
+            if (m[columna][fila] == jugador){
+                if (m[columna+1][fila+1] == jugador){
+                    if (m[columna+2][fila+2] == jugador){
+                        if (m[columna+3][fila+3] == jugador){
+                            flag = true;
+                        }
+                    }
+                }
+            }
+            return flag;
+        }
+
+        private boolean ganaDiagonalAbajo(char jugador) {
+            boolean flag = false;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 5; j > 2; j--) {
+                    if (hay4DiagonalesAbajo(i, j, jugador)){
+                        flag = true;
+                    }
+                }
+            }
+            return flag;
+        }
+
+        private boolean hay4DiagonalesAbajo(int columna, int fila, char jugador){
+            boolean flag = false;
+            if (m[columna][fila] == jugador){
+                if (m[columna+1][fila-1] == jugador){
+                    if (m[columna+2][fila-2] == jugador){
+                        if (m[columna+3][fila-3] == jugador){
+                            flag = true;
+                        }
+                    }
+                }
+            }
+            return flag;
+        }
+
+        public boolean estaFinalizado() {
+            return gana(turno) || contador == 42;
+        }
+
     }
-
-    private boolean hay4Verticales(int columna, int fila, char jugador){
-        //TODO: hay4Verticales
-        return true;
-    }
-
-    private boolean ganaDiagonalArriba(char jugador) {
-        //TODO: ganaDiagonalArriba
-        boolean b = false;
-        return b;
-    }
-
-    private boolean hay4DiagonalesArriba(int columna, int fila, char jugador){
-        //TODO: hay4DiagonalesArriba
-        return true;
-    }
-
-    private boolean ganaDiagonalAbajo(char jugador) {
-        //TODO: ganaDiagonalAbajo
-        boolean b = false;
-        return b;
-    }
-
-    private boolean hay4DiagonalesAbajo(int columna, int fila, char jugador){
-        //TODO: hay4DiagonalesAbajo
-        return true;
-    }
-
-    public boolean estaFinalizado() {
-        //TODO: finalizado
-        return false;
-    }
-
-}
